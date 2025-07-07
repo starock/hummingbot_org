@@ -1,113 +1,351 @@
-![Hummingbot](https://github.com/user-attachments/assets/3213d7f8-414b-4df8-8c1b-a0cd142a82d8)
+# Hummingbot
 
-----
-[![License](https://img.shields.io/badge/License-Apache%202.0-informational.svg)](https://github.com/hummingbot/hummingbot/blob/master/LICENSE)
-[![Twitter](https://img.shields.io/twitter/url?url=https://twitter.com/_hummingbot?style=social&label=_hummingbot)](https://twitter.com/_hummingbot)
-[![Youtube](https://img.shields.io/youtube/channel/subscribers/UCxzzdEnDRbylLMWmaMjywOA)](https://www.youtube.com/@hummingbot)
-[![Discord](https://img.shields.io/discord/530578568154054663?logo=discord&logoColor=white&style=flat-square)](https://discord.gg/hummingbot)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Discord](https://img.shields.io/discord/530578568154054663.svg?color=768AD4&label=discord&logo=https%3A%2F%2Fdiscordapp.com%2Fassets%2F8c9701b98ad4372b58f13fd9f65f966e.svg)](https://discord.hummingbot.io/)
+[![Twitter](https://img.shields.io/twitter/follow/hummingbot_io.svg?style=social&label=hummingbot)](https://twitter.com/hummingbot_io)
 
-Hummingbot is an open-source framework that helps you design and deploy automated trading strategies, or **bots**, that can run on many centralized or decentralized exchanges. Over the past year, Hummingbot users have generated over $34 billion in trading volume across 140+ unique trading venues.
+> **开源算法交易框架，让高频交易变得民主化**
 
-The Hummingbot codebase is free and publicly available under the Apache 2.0 open-source license. Our mission is to **democratize high-frequency trading** by creating a global community of algorithmic traders and developers that share knowledge and contribute to the codebase.
+Hummingbot 是一个用 Python 和 Cython 构建的高性能、模块化的算法交易框架。它支持140多个交易所的做市、套利和其他交易策略，已帮助用户创造超过340亿美元的交易量。
 
-## Quick Links
+## ✨ 核心特性
 
-* [Website and Docs](https://hummingbot.org): Official Hummingbot website and documentation
-* [Installation](https://hummingbot.org/installation/docker/): Install Hummingbot on various platforms
-* [Discord](https://discord.gg/hummingbot): The main gathering spot for the global Hummingbot community
-* [YouTube](https://www.youtube.com/c/hummingbot): Videos that teach you how to get the most of of Hummingbot
-* [Twitter](https://twitter.com/_hummingbot): Get the latest announcements about Hummingbot
-* [Reported Volumes](https://p.datadoghq.com/sb/a96a744f5-a15479d77992ccba0d23aecfd4c87a52): Reported trading volumes across all Hummingbot instances
-* [Newsletter](https://hummingbot.substack.com): Get our newsletter whenever we ship a new release
+### 🚀 高性能架构
+- **低延迟交易**：基于 Cython 优化的核心组件
+- **事件驱动**：异步事件处理机制，毫秒级响应
+- **内存优化**：高效的数据结构和缓存策略
 
+### 🔗 广泛的交易所支持
+- **140+ 交易所**：支持主流 CEX 和 DEX
+- **统一接口**：一致的 API 抽象，轻松切换交易所
+- **实时数据**：WebSocket 连接，实时订单簿和交易数据
 
-## Exchange Connectors
+### 📊 丰富的策略类型
+- **做市策略**：纯做市、Avellaneda-Stoikov 模型
+- **套利策略**：跨交易所套利、三角套利、AMM 套利
+- **趋势策略**：TWAP、动量交易、网格交易
+- **DeFi策略**：流动性挖矿、收益农场
 
-Hummingbot connectors standardize REST and WebSocket API interfaces to different types of exchanges, enabling you to build sophisticated trading strategies that can be deployed across many exchanges with minimal changes.  We classify exchanges into the following categories:
+### 🛠️ 开发者友好
+- **模块化设计**：清晰的架构分层，易于扩展
+- **插件系统**：自定义策略和连接器开发
+- **类型安全**：基于 Pydantic 的配置验证
+- **详细文档**：完整的 API 文档和教程
 
-* **CEX**: Centralized exchanges that take custody of your funds. Use API keys to connect with Hummingbot.
-* **DEX**: Decentralized, non-custodial exchanges that operate on a blockchain. Use wallet keys to connect with Hummingbot.
+## 🚀 快速开始
 
-In addition, connectors differ based on the type of market supported:
+### 前置要求
 
- * **CLOB Spot**: Connectors to spot markets on central limit order book (CLOB) exchanges
- * **CLOB Perp**: Connectors to perpetual futures markets on CLOB exchanges
- * **AMM**: Connectors to spot markets on Automatic Market Maker (AMM) decentralized exchanges
+- Python 3.8 或更高版本
+- Git
+- Docker (可选，用于容器化部署)
 
-### Exchange Sponsors
+### 安装方式
 
-We are grateful for the following exchanges that support the development and maintenance of Hummingbot via broker partnerships and sponsorships.
+#### 方式一：源码安装 (推荐)
 
-| Connector ID | Exchange | CEX/DEX | Market Type | Docs | Discount |
-|----|------|-------|------|------|----------|
-| `binance` | [Binance](https://accounts.binance.com/register?ref=CBWO4LU6) | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/binance/) | [![Sign up for Binance using Hummingbot's referral link for a 10% discount!](https://img.shields.io/static/v1?label=Fee&message=%2d10%25&color=orange)](https://accounts.binance.com/register?ref=CBWO4LU6) |
-| `binance_perpetual` | [Binance](https://accounts.binance.com/register?ref=CBWO4LU6) | CEX | CLOB Perp | [Docs](https://hummingbot.org/exchanges/binance/) | [![Sign up for Binance using Hummingbot's referral link for a 10% discount!](https://img.shields.io/static/v1?label=Fee&message=%2d10%25&color=orange)](https://accounts.binance.com/register?ref=CBWO4LU6) |
-| `gate_io` | [Gate.io](https://www.gate.io/referral/invite/HBOTGATE_0_103) | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/gate-io/) | [![Sign up for Gate.io using Hummingbot's referral link for a 10% discount!](https://img.shields.io/static/v1?label=Fee&message=%2d20%25&color=orange)](https://www.gate.io/referral/invite/HBOTGATE_0_103) |
-| `gate_io_perpetual` | [Gate.io](https://www.gate.io/referral/invite/HBOTGATE_0_103) | CEX | CLOB Perp | [Docs](https://hummingbot.org/exchanges/gate-io/) | [![Sign up for Gate.io using Hummingbot's referral link for a 20% discount!](https://img.shields.io/static/v1?label=Fee&message=%2d20%25&color=orange)](https://www.gate.io/referral/invite/HBOTGATE_0_103) |
-| `htx` | [HTX (Huobi)](https://www.htx.com.pk/invite/en-us/1h?invite_code=re4w9223) | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/huobi/) | [![Sign up for HTX using Hummingbot's referral link for a 20% discount!](https://img.shields.io/static/v1?label=Fee&message=%2d20%25&color=orange)](https://www.htx.com.pk/invite/en-us/1h?invite_code=re4w9223) |
-| `kucoin` | [KuCoin](https://www.kucoin.com/r/af/hummingbot) | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/kucoin/) | [![Sign up for Kucoin using Hummingbot's referral link for a 20% discount!](https://img.shields.io/static/v1?label=Fee&message=%2d20%25&color=orange)](https://www.kucoin.com/r/af/hummingbot) |
-| `kucoin_perpetual` | [KuCoin](https://www.kucoin.com/r/af/hummingbot) | CEX | CLOB Perp | [Docs](https://hummingbot.org/exchanges/kucoin/) | [![Sign up for Kucoin using Hummingbot's referral link for a 20% discount!](https://img.shields.io/static/v1?label=Fee&message=%2d20%25&color=orange)](https://www.kucoin.com/r/af/hummingbot) |
-| `okx` | [OKX](https://www.okx.com/join/1931920269) | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/okx/okx/) | [![Sign up for Kucoin using Hummingbot's referral link for a 20% discount!](https://img.shields.io/static/v1?label=Fee&message=%2d20%25&color=orange)](https://www.okx.com/join/1931920269) |
-| `okx_perpetual` | [OKX](https://www.okx.com/join/1931920269) | CEX | CLOB Perp | [Docs](https://hummingbot.org/exchanges/okx/okx/) | [![Sign up for Kucoin using Hummingbot's referral link for a 20% discount!](https://img.shields.io/static/v1?label=Fee&message=%2d20%25&color=orange)](https://www.okx.com/join/1931920269) |
-| `dydx_v4_perpetual` | [dYdX](https://www.dydx.exchange/) | DEX | CLOB Perp | [Docs](https://hummingbot.org/exchanges/dydx/) | - |
-| `hyperliquid_perpetual` | [Hyperliquid](https://hyperliquid.io/) | DEX | CLOB Perp | [Docs](https://hummingbot.org/exchanges/hyperliquid/) | - |
-| `xrpl` | [XRP Ledger](https://xrpl.org/) | DEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/xrpl/) | - |
+```bash
+# 克隆仓库
+git clone https://github.com/hummingbot/hummingbot.git
+cd hummingbot
 
-### Other Exchange Connectors
+# 安装依赖
+./install
 
-Currently, the master branch of Hummingbot also includes the following exchange connectors, which are maintained and updated through the Hummingbot Foundation governance process. See [Governance](https://hummingbot.org/governance/) for more information.
+# 编译 Cython 模块
+./compile
 
-| Connector ID | Exchange | CEX/DEX | Type | Docs | Discount |
-|----|------|-------|------|------|----------|
-| `ascend_ex` | AscendEx | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/ascendex/) | - |
-| `balancer` | Balancer | DEX | AMM | [Docs](https://hummingbot.org/exchanges/balancer/) | - |
-| `bing_x` | BingX | CEX     | CLOB Spot | [Docs](https://hummingbot.org/exchanges/bing_x/) | - |
-| `bitget_perpetual` | Bitget | CEX | CLOB Perp | [Docs](https://hummingbot.org/exchanges/bitget-perpetual/) | - |
-| `bitmart` | BitMart | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/bitmart/) | - |
-| `bitrue` | Bitrue | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/bitrue/) | - |
-| `bitstamp` | Bitstamp | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/bitstamp/) | - |
-| `btc_markets` | BTC Markets | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/btc-markets/) | - |
-| `bybit` | Bybit | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/bybit/) | - |
-| `bybit_perpetual` | Bybit | CEX | CLOB Perp | [Docs](https://hummingbot.org/exchanges/bybit/) | - |
-| `carbon` | Carbon | DEX | AMM | [Docs](https://hummingbot.org/exchanges/carbon/) | - |
-| `coinbase_advanced_trade` | Coinbase | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/coinbase/) | - |
-| `cube` | Cube | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/cube/) | - |
-| `curve` | Curve | DEX | AMM | [Docs](https://hummingbot.org/exchanges/curve/) | - |
-| `dexalot` | Dexalot | DEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/dexalot/) | - |
-| `injective_v2` | Injective Helix | DEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/injective/) | - |
-| `injective_v2_perpetual` | Injective Helix | DEX | CLOB Perp | [Docs](https://hummingbot.org/exchanges/injective/) | - |
-| `kraken` | Kraken | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/kraken/) | - |
-| `mad_meerkat` | Mad Meerkat | DEX | AMM | [Docs](https://hummingbot.org/exchanges/mad-meerkat/) | - |
-| `mexc` | MEXC | CEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/mexc/) | - |
-| `openocean` | OpenOcean | DEX | AMM | [Docs](https://hummingbot.org/exchanges/openocean/) | - |
-| `pancakeswap` | PancakeSwap | DEX | AMM | [Docs](https://hummingbot.org/exchanges/pancakeswap/) | - |
-| `pangolin` | Pangolin | CEX | DEX | [Docs](https://hummingbot.org/exchanges/pangolin/) | - |
-| `quickswap` | QuickSwap | DEX | AMM | [Docs](https://hummingbot.org/exchanges/quickswap/) | - |
-| `sushiswap` | SushiSwap | DEX | AMM | [Docs](https://hummingbot.org/exchanges/sushiswap/) | - |
-| `tinyman` | Tinyman | DEX | AMM | [Docs](https://hummingbot.org/exchanges/tinyman/) | - |
-| `traderjoe` | Trader Joe | DEX | AMM | [Docs](https://hummingbot.org/exchanges/traderjoe/) | - |
-| `uniswap` | Uniswap | DEX | AMM | [Docs](https://hummingbot.org/exchanges/uniswap/) | - |
-| `vertex` | Vertex | DEX | CLOB Spot | [Docs](https://hummingbot.org/exchanges/vertex/) | - |
-| `vvs` | VVS | DEX | AMM | [Docs](https://hummingbot.org/exchanges/vvs/) | - |
-| `xsswap` | XSSwap | DEX | AMM | [Docs](https://hummingbot.org/exchanges/xswap/) | - |
+# 启动 Hummingbot
+./start
+```
 
-## Other Hummingbot Repos
+#### 方式二：Docker 安装
 
-* [Deploy](https://github.com/hummingbot/deploy): Deploy Hummingbot in various configurations with Docker
-* [Dashboard](https://github.com/hummingbot/dashboard): Web app that help you create, backtest, deploy, and manage Hummingbot instances
-* [Quants Lab](https://github.com/hummingbot/quants-lab): Juypter notebooks that enable you to fetch data and perform research using Hummingbot
-* [Gateway](https://github.com/hummingbot/gateway): Typescript based API client for DEX connectors
-* [Hummingbot Site](https://github.com/hummingbot/hummingbot-site): Official documentation for Hummingbot - we welcome contributions here too!
+```bash
+# 拉取镜像
+docker pull hummingbot/hummingbot:latest
 
-## Contributions
+# 运行容器
+docker run -it --name hummingbot-instance hummingbot/hummingbot:latest
+```
 
-The Hummingbot architecture features modular components that can be maintained and extended by individual community members.
+#### 方式三：pip 安装
 
-We welcome contributions from the community! Please review these [guidelines](./CONTRIBUTING.md) before submitting a pull request.
+```bash
+pip install hummingbot
+```
 
-To have your exchange connector or other pull request merged into the codebase, please submit a New Connector Proposal or Pull Request Proposal, following these [guidelines](https://hummingbot.org/governance/proposals/). Note that you will need some amount of [HBOT tokens](https://etherscan.io/token/0xe5097d9baeafb89f9bcb78c9290d545db5f9e9cb) in your Ethereum wallet to submit a proposal.
+### 首次运行
 
-## Legal
+启动后，按照命令行向导完成初始配置：
 
-* **License**: Hummingbot is open source and licensed under [Apache 2.0](./LICENSE).
-* **Data collection**: See [Reporting](https://hummingbot.org/reporting/) for information on anonymous data collection and reporting in Hummingbot.
+```bash
+# 创建密码
+>>> password
+
+# 导入或创建API密钥
+>>> connect binance
+
+# 创建策略
+>>> create
+```
+
+## 💡 使用示例
+
+### 创建做市策略
+
+```python
+# 通过 CLI 创建
+>>> create
+>>> pure_market_making
+
+# 配置参数
+Exchange: binance
+Trading pair: BTC-USDT
+Bid spread: 0.1%
+Ask spread: 0.1%
+Order amount: 0.01 BTC
+```
+
+### 使用 Strategy V2 (Python API)
+
+```python
+from hummingbot.strategy_v2.controllers.market_making_controller_base import MarketMakingControllerBase
+from hummingbot.strategy_v2.models.executor_actions import CreateExecutorAction
+
+class CustomMarketMakingController(MarketMakingControllerBase):
+    async def update_processed_data(self):
+        # 更新市场数据
+        self.processed_data["mid_price"] = self.get_mid_price()
+        
+    def determine_executor_actions(self):
+        # 决策逻辑
+        if self.should_create_orders():
+            return [
+                CreateExecutorAction(
+                    controller_id=self.config.id,
+                    executor_config=self.get_executor_config()
+                )
+            ]
+        return []
+```
+
+### 自定义脚本
+
+```python
+from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
+
+class MyTradingScript(ScriptStrategyBase):
+    def on_tick(self):
+        # 获取价格
+        price = self.connectors["binance"].get_price("BTC-USDT", True)
+        
+        # 交易逻辑
+        if self.should_buy(price):
+            self.buy("binance", "BTC-USDT", 0.01)
+```
+
+## 🏗️ 架构概览
+
+```
+┌─────────────────────────────────────────────┐
+│              用户界面层                        │
+│  CLI Interface │ Dashboard │ API Gateway   │
+├─────────────────────────────────────────────┤
+│              应用层                          │
+│    HummingbotApplication │ Strategy Mgmt   │
+├─────────────────────────────────────────────┤
+│              策略层                          │
+│   Strategy V1 │ Strategy V2 │ Scripts      │
+├─────────────────────────────────────────────┤
+│              执行层                          │
+│  Controllers │ Executors │ Order Mgmt     │
+├─────────────────────────────────────────────┤
+│              连接器层                        │
+│    CEX Connectors │ DEX Connectors        │
+├─────────────────────────────────────────────┤
+│              核心层                          │
+│   Clock System │ Event System │ Data Mgmt │
+└─────────────────────────────────────────────┘
+```
+
+### 核心组件
+
+- **策略引擎**：支持多种交易策略的执行框架
+- **连接器系统**：统一的交易所接口抽象
+- **事件系统**：高性能的事件驱动架构
+- **时钟系统**：精确的时间控制和回测支持
+- **风控系统**：内置的风险管理机制
+
+## 📚 支持的交易所
+
+### 中心化交易所 (CEX)
+- Binance, Binance US
+- Coinbase Pro, Kraken, KuCoin
+- OKX, Gate.io, Huobi Global
+- Bitfinex, Bittrex, Crypto.com
+- 以及更多...
+
+### 去中心化交易所 (DEX)
+- Uniswap V2/V3, PancakeSwap
+- SushiSwap, TraderJoe
+- dYdX, Perpetual Protocol
+- Balancer, Curve
+- 以及更多...
+
+[查看完整的交易所列表](https://docs.hummingbot.org/exchanges/)
+
+## 🔧 配置指南
+
+### 基础配置
+
+```yaml
+# config/client_config.yml
+instance_id: "my-hummingbot"
+log_level: "INFO"
+kill_switch_enabled: true
+kill_switch_rate: -0.20
+
+# 策略配置示例
+strategy: pure_market_making
+exchange: binance
+market: BTC-USDT
+bid_spread: 0.1
+ask_spread: 0.1
+order_amount: 0.01
+```
+
+### 环境变量
+
+```bash
+# API 密钥 (推荐使用环境变量)
+export BINANCE_API_KEY="your_api_key"
+export BINANCE_SECRET_KEY="your_secret_key"
+
+# 数据库配置
+export DATABASE_URL="sqlite:///data/hummingbot.db"
+
+# 日志级别
+export LOG_LEVEL="INFO"
+```
+
+## 📊 监控和分析
+
+### 内置监控
+- 实时盈亏跟踪
+- 订单执行统计
+- 风险指标监控
+- 性能分析报告
+
+### 第三方集成
+- **Grafana**：可视化仪表盘
+- **Prometheus**：指标收集
+- **Telegram**：实时通知
+- **Discord**：社区集成
+
+## 🤝 贡献指南
+
+我们欢迎各种形式的贡献！
+
+### 开发环境设置
+
+```bash
+# Fork 并克隆仓库
+git clone https://github.com/yourusername/hummingbot.git
+cd hummingbot
+
+# 创建开发环境
+conda create -n hummingbot python=3.9
+conda activate hummingbot
+
+# 安装开发依赖
+pip install -r requirements-dev.txt
+
+# 安装 pre-commit hooks
+pre-commit install
+```
+
+### 贡献类型
+
+- 🐛 **Bug 修复**
+- ✨ **新功能开发**
+- 📚 **文档改进**
+- 🧪 **测试用例**
+- 🔧 **新交易所连接器**
+- 📈 **新交易策略**
+
+### 提交流程
+
+1. Fork 项目
+2. 创建功能分支 (`git checkout -b feature/amazing-feature`)
+3. 提交更改 (`git commit -m 'Add amazing feature'`)
+4. 推送到分支 (`git push origin feature/amazing-feature`)
+5. 创建 Pull Request
+
+查看 [贡献指南](CONTRIBUTING.md) 了解详细信息。
+
+## 📖 文档和资源
+
+### 官方文档
+- 📘 [用户指南](https://docs.hummingbot.org/)
+- 🔧 [开发者文档](https://docs.hummingbot.org/developers/)
+- 📊 [策略库](https://docs.hummingbot.org/strategies/)
+- 🎯 [教程集合](https://docs.hummingbot.org/academy/)
+
+### 学习资源
+- 🎥 [YouTube 频道](https://www.youtube.com/c/HummingbotChannel)
+- 📝 [技术博客](https://blog.hummingbot.org/)
+- 🎓 [在线课程](https://hummingbot.org/academy/)
+- 📚 [案例研究](https://docs.hummingbot.org/case-studies/)
+
+### 社区支持
+- 💬 [Discord 社区](https://discord.hummingbot.io/)
+- 🐦 [Twitter](https://twitter.com/hummingbot_io)
+- 💼 [LinkedIn](https://www.linkedin.com/company/hummingbot/)
+- 📧 [邮件列表](https://hummingbot.substack.com/)
+
+## 🔒 安全考虑
+
+### 最佳实践
+- 🔐 **API 密钥安全**：使用只读权限，定期轮换密钥
+- 💰 **资金管理**：从小额开始，设置止损限制
+- 🔍 **代码审计**：运行前仔细审查策略代码
+- 📊 **监控**：实时监控交易活动和系统状态
+
+### 风险提示
+⚠️ **重要提醒**：算法交易存在金融风险。请：
+- 在实盘前充分测试策略
+- 从小额资金开始
+- 设置适当的风险限制
+- 持续监控交易活动
+
+## 📄 许可证
+
+本项目采用 Apache License 2.0 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+
+## 🙏 致谢
+
+感谢所有为 Hummingbot 项目做出贡献的开发者、交易者和社区成员。
+
+### 核心贡献者
+- CoinAlpha Team - 原始开发团队
+- Hummingbot Foundation - 当前维护者
+- 全球开源社区 - 持续贡献
+
+### 支持者
+- 交易所合作伙伴
+- 机构用户
+- 开源贡献者
+- 社区用户
+
+---
+
+## 📞 联系我们
+
+- 🌐 **官网**: [hummingbot.org](https://hummingbot.org/)
+- 📧 **邮箱**: [support@hummingbot.org](mailto:support@hummingbot.org)
+- 💬 **Discord**: [discord.hummingbot.io](https://discord.hummingbot.io/)
+- 🐛 **Bug 报告**: [GitHub Issues](https://github.com/hummingbot/hummingbot/issues)
+
+**⭐ 如果这个项目对您有帮助，请给我们一个 Star！**
